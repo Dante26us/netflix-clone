@@ -6,12 +6,13 @@ import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import AddIcon from '@material-ui/icons/Add';
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-
+import Player from './Player';
+import history from '../history';
 
 const useStyles = makeStyles((theme) => ({
     line:{
-        display:'inline-flex',
         margin:'2px',
+        
       },
       root1: {
         minWidth:300,
@@ -24,9 +25,12 @@ const useStyles = makeStyles((theme) => ({
         border:'0px',
         '&:hover ': {
           transform:'scale(1.5)translateX(16%)',
-          zIndex:'2',
           border:'0px',
           margin:'0px',
+          zIndex:'2',
+          position:'relative',
+
+
           '& $details':{
             display:'block',
             transition: 'transform .5s',
@@ -39,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
       details:{
         display:'none',
         padding:'0px',
-     
+        
       }, 
       buttons:{
         color:'white',
@@ -66,22 +70,29 @@ const useStyles = makeStyles((theme) => ({
 function TitleCard(props) {
     const classes = useStyles();
     const [state,setState]=useState(0);
+  
     const datas=props.data;
-    console.log(datas);
+    const tag=String(props.tag);
+
   useEffect(() => {
-      const fetch=[datas].map((u) => {
-            return(
-                <div className={classes.line} key={u.id}>
+    if (datas){
+      
+      const fetch=datas.map(u=>{
+        const temp=[u.tags].filter(y=>y.includes(tag)? true:null )
+        if(temp.length >0){
+              return(
+                <div className={classes.line} key={u.id} >
                 <Card className={classes.root1}>
-                <CardActionArea>
+                <CardActionArea onClick={() => history.push('/Player')}>
                 <CardMedia
                 className={classes.media}
                 image={u.image}
                 title={u.title}
-              />
+                
+              />{console.log(u.url)}
               </CardActionArea>
               <CardActions className={classes.details}>
-              <Button className={classes.buttons}>
+              <Button className={classes.buttons} onClick={() => history.push({pathname:'/Player',state:{detail:'hello'}})}>
               <PlayCircleFilledIcon/>
               </Button>
               <Button className={classes.buttons}>
@@ -98,15 +109,25 @@ function TitleCard(props) {
               </Button>
               </CardActions>
             </Card></div>
-          )   
+          )  
+        }
       })
-      setState({
+        
+      
+    
+         
+         
+   
+      setState([
         fetch
-      })
+      ])
+  }
     }, [])
   
     return (<>
      {state}
+
+
     </>
     );
 

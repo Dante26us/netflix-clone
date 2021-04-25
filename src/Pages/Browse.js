@@ -1,4 +1,14 @@
 import React from 'react';
+import St from "../Images/titlecardimages/StrangerThings.jpeg";
+import D from "../Images/titlecardimages/Dark.png";
+import BB from "../Images/titlecardimages/BreakingBad.jpg";
+import DM from "../Images/titlecardimages/DevilMan.jpg";
+import EC from "../Images/titlecardimages/ElCamino.jpg";
+import H from "../Images/titlecardimages/Her.jpg";
+import MH from "../Images/titlecardimages/MindHunter.jpg";
+import SB from "../Images/titlecardimages/Sabrina.png";
+import SK from "../Images/titlecardimages/SaikiK.jpg";
+import Y from "../Images/titlecardimages/You.jpg";
 import {AppBar, Toolbar, Typography ,Card}from '@material-ui/core';
 import {Link} from 'react-router-dom';
 import SearchIcon from '@material-ui/icons/Search';
@@ -9,9 +19,8 @@ import Avatar from '@material-ui/core/Avatar';
 import TuneIcon from '@material-ui/icons/Tune';
 import Avatar1 from "../Images/avatar1.png";
 import browse1 from "../Images/browse1.jpg";
-import TitleCard from "../components/TitleCard";
 import Data from '../Data';
-
+import TitleCard from "../components/TitleCard";
 const useStyles = makeStyles((theme) => ({
     root: {
     flexGrow: 1,
@@ -76,11 +85,89 @@ const useStyles = makeStyles((theme) => ({
     maxHeight:60,
 
   },
+  tiles:{
+    display:'inline-flex',
+    zIndex:'1',
+  
     
+  }
+   
 })
 )
 export default function Browse() {
     const classes = useStyles();
+    const datas=[
+      {
+          id:1,
+          image:St,
+          title:'Stranger Things',
+          tags:['Hollywood','Horror'],
+          url:'https://www.youtube.com/watch?v=mnd7sFt5c3A',
+      },
+      {
+          id:2,
+          image:D,
+          title:'Dark',
+          tags:['Sci-fi','Horror'],
+          url:'https://www.youtube.com/watch?v=rrwycJ08PSA',
+      },
+      {
+          id:3,
+          image:BB,
+          title:'Breaking Bad',
+          tags:['Hollywood'],
+          url:'https://www.youtube.com/watch?v=HhesaQXLuRY',
+      },
+      {
+          id:4,
+          image:DM,
+          title:'DevilMan Crybaby',
+          tags:['Anime','Horror'],
+          url:'https://www.youtube.com/watch?v=ww06yGPM7Kc',
+      },
+      {
+          id:5,
+          image:EC,
+          title:'El Camino',
+          tags:['Hollywood','Movie'],
+          url:'https://www.youtube.com/watch?v=1JLUn2DFW4w',
+      },
+      {
+          id:6,
+          image:H,
+          title:'Her',
+          tags:['Hollywood','Romance'],
+          url:'https://www.youtube.com/watch?v=dJTU48_yghs',
+      },
+      {
+          id:7,
+          image:MH,
+          title:'Mindhunter',
+          tags:['Hollywood','Horror'],
+          url:'https://www.youtube.com/watch?v=edaQ9XwLiXc',
+      },
+      {
+          id:8,
+          image:SB,
+          title:'The chilling adventures of Sabrina',
+          tags:['Hollywood','Horror'],
+          url:'https://www.youtube.com/watch?v=gENO66DUgaQ',
+      },
+      {
+          id:9,
+          image:SK,
+          title:'Saiki K',
+          tags:['Anime'],
+          url:'https://www.youtube.com/watch?v=sbw7QB6nrTc',
+      },
+      {
+          id:10,
+          image:Y,
+          title:'You',
+          tags:['Hollywood','Thriller'],
+          url:'https://www.youtube.com/watch?v=ga1m0wjzscU',
+      }
+  ]
 
     return (
         <div className={classes.root}>
@@ -111,41 +198,33 @@ export default function Browse() {
             </Toolbar>
             </AppBar>
           <div><img src={browse1} alt='browse1' className="browse1"/></div>
-         
 
-
-
-        <Card className={classes.cardTitle}>
+      <Card className={classes.cardTitle}>
         <Typography className={classes.title}>
-          Hollywood Movies {'>'}
-        </Typography><Data/>
-        <TitleCard/>
+          Hollywood {'>'}
+        </Typography><div className={classes.tiles}><TitleCard  tag='Hollywood' data={datas}/></div>
         </Card>
-
       
       <Card className={classes.cardTitle}>
           <Typography className={classes.title}>
-          Horror Movies {'>'}
-          </Typography><Data/>
-          <TitleCard/>
+          Horror {'>'}
+          </Typography><div className={classes.tiles}>
+          <TitleCard  tag='Horror' data={datas}/></div>
       </Card>
      
-      
-
-
-        <Card className={classes.cardTitle}>        
+      <Card className={classes.cardTitle}>        
         <Typography className={classes.title}>
-          Indian Movies {'>'}
-        </Typography><Data/>
-        <TitleCard/>
-        </Card>
+          Anime {'>'}
+        </Typography><div className={classes.tiles}>
+        <TitleCard  tag='Anime' data={datas}/></div>
+      </Card>
 
-        <Card className={classes.cardTitle}>
+      <Card className={classes.cardTitle}>
         <Typography className={classes.title}>
-          Comedy Movies {'>'}
-        </Typography><Data/>
-        <TitleCard/>
-        </Card>
+          Romance {'>'}
+        </Typography><div className={classes.tiles}>
+        <TitleCard  tag='Romance' data={datas}/></div>
+      </Card>
 
         </div>
     )
