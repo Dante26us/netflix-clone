@@ -30,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor:'black',
   },
   search: {
-    
     position: 'relative',
     borderRadius: '4px',
     backgroundColor: fade(theme.palette.common.white, 0.15),
@@ -38,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
     [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(120),
+      marginLeft: '50%',
       width: 'auto',
     },
   },

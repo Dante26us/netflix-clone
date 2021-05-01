@@ -25,7 +25,7 @@ code {
 .background .Login{
 position:relative;
 top:70px;
-left:160%;
+left:85%;
 font-size: 15px;
 font-family:Arial, Helvetica, sans-serif;
 font-weight: bold;
@@ -43,13 +43,13 @@ display: inline-flex;
   position: absolute;
   top: 30px;
   left:30px;
-  min-width:1000px;
+  min-width:100%;
 }
 .background .h1{
   position: relative;
   color: white;
   top: 300px;
-  left:600px;
+  left:25%;
   font-size: 60px;
   display: flex;
 
@@ -58,7 +58,7 @@ display: inline-flex;
   position: relative;
   color: white;
   top: 250px;
-  left:700px;
+  left:25%;
   font-size: 25px;
   display: flex;
 
@@ -67,7 +67,7 @@ display: inline-flex;
   position: relative;
   color: white;
   top: 250px;
-  left:600px;
+  left:25%;
   font-size: 20px;
   display: flex;
 
@@ -75,7 +75,7 @@ display: inline-flex;
 .input{
   position: relative;
   top: 250px;
-  left:600px;
+  left:25%;
   border: none;
   color:black;
   padding-top:20px;
@@ -92,7 +92,7 @@ display: inline-flex;
 position:relative;
 display: inline-flex;
 top: 255px;
-left:600px;
+left:25%;
 font-size: 30px;
 font-family:Arial, Helvetica, sans-serif;
 background-color: #e50914;
@@ -175,7 +175,8 @@ input[type="checkbox"]:checked{
 .browse{
   text-decoration:none;
   color:white;
-  padding:10px;
+  font-size: 90%;
+  margin-left: 1%;
 }
 .browse:active{
   font-weight:bold;

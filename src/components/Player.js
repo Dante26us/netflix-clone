@@ -7,7 +7,7 @@ function Player(props) {
         {console.log(props.location.state)}
         <ReactPlayer
           className='react-player'
-          url='https://www.youtube.com/watch?v=mnd7sFt5c3A'
+          url={props.location.state.detail}
           width='100%'
           playing={true}
           height='100%'

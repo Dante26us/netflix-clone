@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import StartPage1 from "../Images/StartPage1.jpg"
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -9,6 +9,17 @@ import Button from '@material-ui/core/Button';
 import history from '../history';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
+async function loginUser(credentials) {
+    return fetch('http://localhost:8080/Login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(credentials)
+    })
+      .then(data => data.json())
+   }
 const useStyles = makeStyles({
     root: {
       position:'absolute',  
@@ -47,7 +58,7 @@ const useStyles = makeStyles({
         display:'flex',
         fontSize:'24px',
         position:'relative',
-        minWidth:'350px',
+        minWidth:'370px',
         marginTop:'40px',
         '&:hover': {
       backgroundColor:'#e50914' ,
@@ -55,14 +66,24 @@ const useStyles = makeStyles({
     },
     
 })
-function Login() {
+function Login({ setToken }) {
     const classes = useStyles();
+    const [username, setUserName] = useState();
+    const [password, setPassword] = useState();
     const [state, setState] = React.useState({
     checked: true
     });
     const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
     };
+    const handleSubmit = async e => {
+        e.preventDefault();
+        const token = await loginUser({
+          username,
+          password
+        });
+        setToken(token);
+      }    
     
 
     
@@ -74,8 +95,8 @@ function Login() {
             <Typography className={classes.title}>
             Sign In
             </Typography>
-            <TextField className={classes.info} id="email" label="Email or Phone number" variant="filled" />
-            <TextField className={classes.info} id="password" label="Password" variant="filled" type="password" />
+            <TextField className={classes.info} id="email" label="Email or Phone number" variant="filled" onChange={e => setUserName(e.target.value)} />
+            <TextField className={classes.info} id="password" label="Password" variant="filled" type="password" onChange={e => setPassword(e.target.value)} />
             <Button variant="contained" className={classes.button} color="secondary" onClick={() => history.push('/Browse')}>
             Sign In
             </Button>
@@ -91,5 +112,8 @@ function Login() {
         </div>
     );
 }
+Login.propTypes = {
+    setToken: PropTypes.func.isRequired
+  }
 
 export default Login;

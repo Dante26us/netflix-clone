@@ -83,16 +83,16 @@ function TitleCard(props) {
               return(
                 <div className={classes.line} key={u.id} >
                 <Card className={classes.root1}>
-                <CardActionArea onClick={() => history.push('/Player')}>
+                <CardActionArea onClick={() => history.push({pathname:'/Player',state:{detail:u.url}})}>
                 <CardMedia
                 className={classes.media}
                 image={u.image}
                 title={u.title}
                 
-              />{console.log(u.url)}
+              />
               </CardActionArea>
               <CardActions className={classes.details}>
-              <Button className={classes.buttons} onClick={() => history.push({pathname:'/Player',state:{detail:'hello'}})}>
+              <Button className={classes.buttons} onClick={() => history.push({pathname:'/Player',state:{detail:u.url}})}>
               <PlayCircleFilledIcon/>
               </Button>
               <Button className={classes.buttons}>
@@ -112,22 +112,13 @@ function TitleCard(props) {
           )  
         }
       })
-        
-      
-    
-         
-         
-   
       setState([
         fetch
       ])
   }
     }, [])
-  
     return (<>
      {state}
-
-
     </>
     );
 

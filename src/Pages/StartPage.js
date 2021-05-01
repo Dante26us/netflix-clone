@@ -3,7 +3,7 @@ import StartPage1 from '../Images/StartPage1.jpg'
 import StartPage2 from '../Images/StartPage2.jpg'
 import StartPage3 from '../Images/StartPage3.jpg'
 import StartPage4 from '../Images/StartPage4.jpg'
-
+import Login from './Login';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -83,8 +83,22 @@ const useStyles = makeStyles({
         textAlign:'left',
     }
   });
+  function setToken(userToken) {
+    sessionStorage.setItem('token', JSON.stringify(userToken));
+  }
+  
+  function getToken() {
+    const tokenString = sessionStorage.getItem('token');
+  const userToken = JSON.parse(tokenString);
+  return userToken?.token
+  }
 function StartPage() {
     const classes = useStyles();
+    const token = getToken();
+  if(!token) {
+    return <Login setToken={setToken} />
+  }
+
     return (
         <div className="main">
         <div className="background">
